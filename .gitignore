@@ -5,3 +5,4 @@
 /.vs
 /SmallProgram.IdentityServer4/.vs/SmallProgram.IdentityServer4/v16
 /SmallProgram.IdentityServer4/SmallProgram.IdentityServer4.Core/obj
+/SmallProgram.IdentityServer4/SmallProgram.IdentityServer4.Core/bin/Debug/netcoreapp2.2
