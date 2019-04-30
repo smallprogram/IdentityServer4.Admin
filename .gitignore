@@ -3,3 +3,5 @@
 ################################################################################
 
 /.vs
+/SmallProgram.IdentityServer4/.vs/SmallProgram.IdentityServer4/v16
+/SmallProgram.IdentityServer4/SmallProgram.IdentityServer4.Core/obj
