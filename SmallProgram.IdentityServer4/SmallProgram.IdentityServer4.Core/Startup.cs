@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SmallProgram.IdentityServer4.Core.DBSeed;
+using System;
+using System.Reflection;
 
 namespace SmallProgram.IdentityServer4.Core
 {
@@ -34,6 +33,20 @@ namespace SmallProgram.IdentityServer4.Core
                 iis.AutomaticAuthentication = false;
             });
 
+            var MachineName = System.Environment.MachineName;
+            var ConnectionsString = "";
+            if (MachineName == "CGYYPC") //如果时单位机器
+            {
+                ConnectionsString = Configuration.GetConnectionString("CgyyConnection");
+                //ConnectionsString = configuration["ConnectionStrings:CgyyConnection"];
+            }
+            else
+            {
+                ConnectionsString = Configuration.GetConnectionString("HomeConnection");
+                //ConnectionsString = configuration["ConnectionStrings:HomeConnection"];
+            }
+
+
             //https支持
             services.AddHsts(options =>
             {
@@ -54,6 +67,21 @@ namespace SmallProgram.IdentityServer4.Core
                  .AllowAnyMethod());
             });
 
+            #region 配置IdentityServer4
+            ///******************************************************************
+            /// 添加迁移
+            /// add-migration InitIdentityServerPersistedGrant -c PersistedGrantDbContext -o Migrations/IdentityServer/PersistedGrantDb
+            /// add-migration InitIdentityServerConfiguration -c ConfigurationDbContext -o Migrations/IdentityServer/ConfigurationDb
+            /// 更新数据库
+            /// update-database -c PersistedGrantDbContext
+            /// update-database -c ConfigurationDbContext
+            /// 
+            /// 
+            /// 
+            ///******************************************************************
+            //获取当前程序集命名空间
+            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+            
             //配置IdentityServer4
             var builder = services.AddIdentityServer(options =>
             {
@@ -61,8 +89,25 @@ namespace SmallProgram.IdentityServer4.Core
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;
                 options.Events.RaiseSuccessEvents = true;
-            });
+            })
+            //.AddTestUsers()
+            //配置IdentityServer的配置数据持久化，（clients,resources）
+            .AddConfigurationStore(options =>
+            {
+                options.ConfigureDbContext = b =>
+                b.UseSqlServer(ConnectionsString, sql => sql.MigrationsAssembly(migrationsAssembly));
+            })
 
+            //配置IdentityServer的运营数据持久化，（codes,tokens,consents)
+            .AddOperationalStore(options =>
+            {
+                options.ConfigureDbContext = b =>
+                b.UseSqlServer(ConnectionsString, sql => sql.MigrationsAssembly(migrationsAssembly));
+
+                //自动清除token，可选配置
+                options.EnableTokenCleanup = true;
+            });
+            
             //配置IdentityServer4的证书
             if (Environment.IsDevelopment())
             {
@@ -77,7 +122,7 @@ namespace SmallProgram.IdentityServer4.Core
                 //builder.AddValidationKey("key");
             }
 
-
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -91,6 +136,9 @@ namespace SmallProgram.IdentityServer4.Core
             {
                 app.UseHsts();
             }
+
+            //IdentityServer4数据库Seed初始化
+            InitializeDataBase.InitializeDatabase(app);
 
             app.UseCors();
 
