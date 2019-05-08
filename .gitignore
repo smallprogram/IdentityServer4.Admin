@@ -3,3 +3,12 @@
 ################################################################################
 
 /SP.Idp/.vs/SP.Idp/v16
+/SP.Idp/SP.Idp.Api/obj
+/SP.Idp/SP.Idp.Api/bin/Debug/netcoreapp2.2
+/SP.Idp/SP.Idp.Core.DbEntites/obj
+/SP.Idp/SP.Idp.Core.IdentityCore/bin/Debug/netstandard2.0
+/SP.Idp/SP.Idp.Core.IdentityCore/obj
+/SP.Idp/SP.Idp.Extensions/obj
+/SP.Idp/SP.Idp.Repository/obj
+/SP.Idp/SP.Idp.Resources/obj
+/SP.Idp/SP.Idp.Services/obj
