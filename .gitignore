@@ -1,8 +1,0 @@
-﻿################################################################################
-# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
-################################################################################
-
-/.vs
-/SmallProgram.IdentityServer4/.vs/SmallProgram.IdentityServer4/v16
-/SmallProgram.IdentityServer4/SmallProgram.IdentityServer4.Core/obj
-/SmallProgram.IdentityServer4/SmallProgram.IdentityServer4.Core/bin/Debug/netcoreapp2.2
