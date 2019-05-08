@@ -76,8 +76,11 @@ namespace SP.Idp.Api
 
             #region 配置Asp.net Core Identity
 
+
+            //获取AspNetCore Identity程序集
+            var AspNetCoreIdentityMigrationsAssembly = typeof(IdentityCoreContext).GetTypeInfo().Assembly.GetName().Name;
             services.AddDbContext<IdentityCoreContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString(ConnectionsString)));
+                options.UseSqlServer(ConnectionsString,sql => sql.MigrationsAssembly(AspNetCoreIdentityMigrationsAssembly)));
 
             services.AddIdentity<IdpUser, IdpRole>()
                 .AddEntityFrameworkStores<IdentityCoreContext>()
@@ -119,21 +122,6 @@ namespace SP.Idp.Api
             #endregion
 
             #region 配置IdentityServer4
-            ///******************************************************************
-            /// 添加迁移
-            /// add-migration InitIdentityServerPersistedGrant -c PersistedGrantDbContext -o Migrations/IdentityServer/PersistedGrantDb
-            /// add-migration InitIdentityServerConfiguration -c ConfigurationDbContext -o Migrations/IdentityServer/ConfigurationDb
-            /// 更新数据库
-            /// update-database -c PersistedGrantDbContext
-            /// update-database -c ConfigurationDbContext
-            /// 
-            /// 
-            /// 
-            ///******************************************************************
-            ///
-
-            //获取当前程序集命名空间
-            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
             //配置IdentityServer4
             var builder = services.AddIdentityServer(options =>
@@ -147,25 +135,37 @@ namespace SP.Idp.Api
             //.AddTestUsers()
             //使用Asp.net core identity作为用户管理
             .AddAspNetIdentity<IdpUser>()
-            
+
+
+
+
 
 
             //配置IdentityServer的配置数据持久化，（clients,resources）
-            .AddConfigurationStore(options =>
+            //使用扩展的DbContext进行配置
+            .AddConfigurationStore<IdpConfigurationDbContext>(options =>
             {
+
                 options.ConfigureDbContext = b =>
-                b.UseSqlServer(ConnectionsString, sql => sql.MigrationsAssembly(migrationsAssembly));
-            })
+                b.UseSqlServer(ConnectionsString, sql => sql.MigrationsAssembly(AspNetCoreIdentityMigrationsAssembly));
+            });
 
             //配置IdentityServer的运营数据持久化，（codes,tokens,consents)
-            .AddOperationalStore(options =>
-            {
-                options.ConfigureDbContext = b =>
-                b.UseSqlServer(ConnectionsString, sql => sql.MigrationsAssembly(migrationsAssembly));
+            //使用扩展的DbContext进行配置
+            //.AddOperationalStore<IdpPersistedGrantDbContext>(options =>
+            //{
+            //    options.ConfigureDbContext = b =>
+            //    b.UseSqlServer(ConnectionsString, sql => sql.MigrationsAssembly(AspNetCoreIdentityMigrationsAssembly));
 
-                //自动清除token，可选配置
-                options.EnableTokenCleanup = true;
+            //    //自动清除token，可选配置
+            //    options.EnableTokenCleanup = true;
+            //});
+
+            services.AddDbContext<IdpPersistedGrantDbContext>(options =>
+            {
+                options.UseSqlServer(ConnectionsString, sql => sql.MigrationsAssembly(AspNetCoreIdentityMigrationsAssembly));
             });
+
 
             //配置IdentityServer4的证书
             if (Environment.IsDevelopment())
@@ -183,7 +183,12 @@ namespace SP.Idp.Api
 
             #endregion
 
+            #region DI(依赖注入) 配置
 
+
+
+
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

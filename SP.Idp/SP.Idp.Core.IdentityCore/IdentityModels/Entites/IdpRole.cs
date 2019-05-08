@@ -7,5 +7,6 @@ namespace SP.Idp.Core.IdentityCore.IdentityModels.Entites
 {
     public class IdpRole : IdentityRole<Guid>
     {
+
     }
 }

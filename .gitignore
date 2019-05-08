@@ -13,3 +13,8 @@
 /SP.Idp/SP.Idp.Resources/obj
 /SP.Idp/SP.Idp.Services/obj
 /.vs
+/SP.Idp/SP.Idp.Extensions/bin/Debug/netstandard2.0
+/SP.Idp/SP.Idp.Repository/bin/Debug/netstandard2.0
+/SP.Idp/SP.Idp.Resources/bin/Debug/netstandard2.0
+/SP.Idp/SP.Idp.Services/bin/Debug/netstandard2.0
+/SP.Idp/.vs/SP.Idp/DesignTimeBuild
