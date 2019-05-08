@@ -6,4 +6,6 @@
 /SmallProgram.IdentityServer4/.vs/SmallProgram.IdentityServer4/v16
 /SmallProgram.IdentityServer4/SmallProgram.IdentityServer4.Core/obj
 /SmallProgram.IdentityServer4/SmallProgram.IdentityServer4.Core/bin/Debug/netcoreapp2.2
-/SmallProgram.IdentityServer4/.vs/SmallProgram.IdentityServer4/DesignTimeBuild/.dtbcache
+/SmallProgram.IdentityServer4/.vs/SmallProgram.IdentityServer4/DesignTimeBuild
+/SmallProgram.IdentityServer4/SmallProgram.IdentityServer4.Models/bin/Debug/netstandard2.0
+/SmallProgram.IdentityServer4/SmallProgram.IdentityServer4.Models/obj
