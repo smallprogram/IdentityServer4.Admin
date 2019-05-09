@@ -136,11 +136,6 @@ namespace SP.Idp.Api
             //使用Asp.net core identity作为用户管理
             .AddAspNetIdentity<IdpUser>()
 
-
-
-
-
-
             //配置IdentityServer的配置数据持久化，（clients,resources）
             //使用扩展的DbContext进行配置
             .AddConfigurationStore<IdpConfigurationDbContext>(options =>
@@ -160,8 +155,6 @@ namespace SP.Idp.Api
                 //自动清除token，可选配置
                 options.EnableTokenCleanup = true;
             });
-
-
 
             //配置IdentityServer4的证书
             if (Environment.IsDevelopment())
@@ -188,17 +181,19 @@ namespace SP.Idp.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
+            if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            app.UseCors();
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseIdentityServer();
+            //app.UseAuthentication();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
