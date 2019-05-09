@@ -10,9 +10,9 @@ using System.Text;
 
 namespace SP.Idp.Core.IdentityCore.IdentityContext
 {
-    public class IdpConfigurationDbContext : ConfigurationDbContext
+    public class IdpConfigurationDbContext : ConfigurationDbContext<IdpConfigurationDbContext>
     {
-        public IdpConfigurationDbContext(DbContextOptions<ConfigurationDbContext> options, ConfigurationStoreOptions storeOptions) : base(options, storeOptions)
+        public IdpConfigurationDbContext(DbContextOptions<IdpConfigurationDbContext> options, ConfigurationStoreOptions storeOptions) : base(options, storeOptions)
         {
         }
 
@@ -99,16 +99,16 @@ namespace SP.Idp.Core.IdentityCore.IdentityContext
     }
 
 
-    public class ConfigurationContextDesignTimeFactory : DesignTimeDbContextFactoryBase<ConfigurationDbContext>
-    {
-        public ConfigurationContextDesignTimeFactory()
-            : base("IDPDataDBConnectionString", typeof(IdpConfigurationDbContext).GetTypeInfo().Assembly.GetName().Name)
-        {
-        }
+    //public class ConfigurationContextDesignTimeFactory : DesignTimeDbContextFactoryBase<ConfigurationDbContext>
+    //{
+    //    public ConfigurationContextDesignTimeFactory()
+    //        : base("IDPDataDBConnectionString", typeof(IdpConfigurationDbContext).GetTypeInfo().Assembly.GetName().Name)
+    //    {
+    //    }
 
-        protected override ConfigurationDbContext CreateNewInstance(DbContextOptions<ConfigurationDbContext> options)
-        {
-            return new ConfigurationDbContext(options, new ConfigurationStoreOptions());
-        }
-    }
+    //    protected override ConfigurationDbContext CreateNewInstance(DbContextOptions<ConfigurationDbContext> options)
+    //    {
+    //        return new ConfigurationDbContext(options, new ConfigurationStoreOptions());
+    //    }
+    //}
 }

@@ -148,23 +148,19 @@ namespace SP.Idp.Api
 
                 options.ConfigureDbContext = b =>
                 b.UseSqlServer(ConnectionsString, sql => sql.MigrationsAssembly(AspNetCoreIdentityMigrationsAssembly));
-            });
+            })
 
             //配置IdentityServer的运营数据持久化，（codes,tokens,consents)
             //使用扩展的DbContext进行配置
-            //.AddOperationalStore<IdpPersistedGrantDbContext>(options =>
-            //{
-            //    options.ConfigureDbContext = b =>
-            //    b.UseSqlServer(ConnectionsString, sql => sql.MigrationsAssembly(AspNetCoreIdentityMigrationsAssembly));
-
-            //    //自动清除token，可选配置
-            //    options.EnableTokenCleanup = true;
-            //});
-
-            services.AddDbContext<IdpPersistedGrantDbContext>(options =>
+            .AddOperationalStore<IdpPersistedGrantDbContext>(options =>
             {
-                options.UseSqlServer(ConnectionsString, sql => sql.MigrationsAssembly(AspNetCoreIdentityMigrationsAssembly));
+                options.ConfigureDbContext = b =>
+                b.UseSqlServer(ConnectionsString, sql => sql.MigrationsAssembly(AspNetCoreIdentityMigrationsAssembly));
+
+                //自动清除token，可选配置
+                options.EnableTokenCleanup = true;
             });
+
 
 
             //配置IdentityServer4的证书

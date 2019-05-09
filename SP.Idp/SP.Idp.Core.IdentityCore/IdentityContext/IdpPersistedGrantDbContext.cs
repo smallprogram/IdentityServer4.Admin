@@ -12,9 +12,9 @@ using System.Text;
 
 namespace SP.Idp.Core.IdentityCore.IdentityContext
 {
-    public class IdpPersistedGrantDbContext : PersistedGrantDbContext
+    public class IdpPersistedGrantDbContext : PersistedGrantDbContext<IdpPersistedGrantDbContext>
     {
-        public IdpPersistedGrantDbContext(DbContextOptions<PersistedGrantDbContext> options, OperationalStoreOptions storeOptions) : base(options, storeOptions)
+        public IdpPersistedGrantDbContext(DbContextOptions<IdpPersistedGrantDbContext> options, OperationalStoreOptions storeOptions) : base(options, storeOptions)
         {
 
         }
@@ -36,18 +36,18 @@ namespace SP.Idp.Core.IdentityCore.IdentityContext
     /// <summary>
     /// 用于EF迁移时解析IdentityServer的DBContext，返回具体的DBContext的实例工厂
     /// </summary>
-    public class PersistedGrantContextDesignTimeFactory : DesignTimeDbContextFactoryBase<PersistedGrantDbContext>
-    {
-        public PersistedGrantContextDesignTimeFactory()
-            : base("IDPDataDBConnectionString", typeof(IdpPersistedGrantDbContext).GetTypeInfo().Assembly.GetName().Name)
-        {
-        }
+    //public class PersistedGrantContextDesignTimeFactory : DesignTimeDbContextFactoryBase<PersistedGrantDbContext>
+    //{
+    //    public PersistedGrantContextDesignTimeFactory()
+    //        : base("IDPDataDBConnectionString", typeof(IdpPersistedGrantDbContext).GetTypeInfo().Assembly.GetName().Name)
+    //    {
+    //    }
 
-        protected override PersistedGrantDbContext CreateNewInstance(DbContextOptions<PersistedGrantDbContext> options)
-        {
-            return new PersistedGrantDbContext(options, new OperationalStoreOptions());
-        }
-    }
+    //    protected override PersistedGrantDbContext CreateNewInstance(DbContextOptions<PersistedGrantDbContext> options)
+    //    {
+    //        return new PersistedGrantDbContext(options, new OperationalStoreOptions());
+    //    }
+    //}
 
  
 
