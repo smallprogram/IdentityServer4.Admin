@@ -27,6 +27,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SP.Idp.Core.IdentityCore\SP.Idp.Core.IdentityCore.csproj" />
+    <ProjectReference Include="..\SP.Idp.Extensions\SP.Idp.Extensions.csproj" />
+    <ProjectReference Include="..\SP.Idp.Repository\SP.Idp.Repository.csproj" />
+    <ProjectReference Include="..\SP.Idp.Resources\SP.Idp.Resources.csproj" />
+    <ProjectReference Include="..\SP.Idp.Services\SP.Idp.Services.csproj" />
   </ItemGroup>
 
 </Project>
