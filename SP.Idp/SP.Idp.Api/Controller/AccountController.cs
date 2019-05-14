@@ -38,5 +38,8 @@ namespace SP.Idp.Api.Controller
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
+
+
+
     }
 }
