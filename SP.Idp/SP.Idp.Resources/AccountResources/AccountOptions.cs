@@ -17,9 +17,10 @@ namespace SP.Idp.Resources.AccountResources
 
         // 指定正在使用的Windows身份验证方案
         public static readonly string WindowsAuthenticationSchemeName = Microsoft.AspNetCore.Server.IISIntegration.IISDefaults.AuthenticationScheme;
-        // if user uses windows auth, should we load the groups from windows
+        // 如果用户使用windows auth，我们是否应该从windows加载组
         public static bool IncludeWindowsGroups = false;
-
-        public static string InvalidCredentialsErrorMessage = "Invalid username or password";
+        
+        //无效凭据的错误信息
+        public static string InvalidCredentialsErrorMessage = "错误的用户名和密码";
     }
 }
