@@ -19,3 +19,8 @@
 /SP.Idp/SP.Idp.Services/bin/Debug/netstandard2.0
 /SP.Idp/.vs/SP.Idp/DesignTimeBuild
 /SP.Idp/.vs/SP.Idp/config
+/SP.Idp/SP.Idp.Core.IdentityCore/bin/Debug/netcoreapp2.2
+/SP.Idp/SP.Idp.Extensions/bin/Debug/netcoreapp2.2
+/SP.Idp/SP.Idp.Repository/bin/Debug/netcoreapp2.2
+/SP.Idp/SP.Idp.Resources/bin/Debug/netcoreapp2.2
+/SP.Idp/SP.Idp.Services/bin/Debug/netcoreapp2.2
