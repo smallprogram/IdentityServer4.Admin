@@ -4,11 +4,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 # Setup
 
-`npm install material-design-icons` for material design icons  
-src/styles.scss `@import "~material-design-icons/iconfont/material-icons.css";` for use icons  
-`npm install --save @angular/material @angular/cdk @angular/animations` for Angular Material, CDK, Animations 
-`npm install --save hammerjs` for Gesture Support  
-src/main.ts `import "hammerjs";` for use Gesture  
-`npm i oidc-client` for oidc-client
+1. `npm install material-design-icons` for material design icons  
+2. src/styles.scss `@import "~material-design-icons/iconfont/material-icons.css";` for use icons  
+3. `npm install --save @angular/material @angular/cdk @angular/animations` for Angular Material, CDK, Animations 
+4. `npm install --save hammerjs` for Gesture Support  
+5. src/main.ts `import "hammerjs";` for use Gesture  
+6. `npm i oidc-client` for oidc-client
 
 
