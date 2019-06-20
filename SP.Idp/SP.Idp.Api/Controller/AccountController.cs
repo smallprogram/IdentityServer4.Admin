@@ -14,8 +14,8 @@ namespace SP.Idp.Api.Controller
 {
     [SecurityHeaders]
     [AllowAnonymous]
-    [Route("api/Account")]
-    [ApiController]
+    //[Route("api/Account")]
+    //[ApiController]
     public class AccountController : ControllerBase
     {
         private readonly IIdentityServerInteractionService identityServerInteractionService;
