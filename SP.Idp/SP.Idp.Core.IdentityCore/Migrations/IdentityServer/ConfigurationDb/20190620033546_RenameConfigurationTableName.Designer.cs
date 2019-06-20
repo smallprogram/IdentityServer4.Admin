@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SP.Idp.Core.IdentityCore.IdentityContext;
 
 namespace SP.Idp.Core.IdentityCore.Migrations.IdentityServer.ConfigurationDb
 {
     [DbContext(typeof(IdpConfigurationDbContext))]
-    partial class IdpConfigurationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190620033546_RenameConfigurationTableName")]
+    partial class RenameConfigurationTableName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -21,79 +21,79 @@ namespace SP.Idp.Core.IdentityCore.IdentityContext
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Client>(b =>
             {
-                b.ToTable("Idp_Clients");
+                b.ToTable("IdpConfig_Clients");
             });
             modelBuilder.Entity<ClientProperty>(b =>
             {
-                b.ToTable("Idp_ClientProperties");
+                b.ToTable("IdpConfig_ClientProperties");
             });
             modelBuilder.Entity<ClientCorsOrigin>(b =>
             {
-                b.ToTable("Idp_ClientCorsOrigins");
+                b.ToTable("IdpConfig_ClientCorsOrigins");
             });
             modelBuilder.Entity<ClientIdPRestriction>(b =>
             {
-                b.ToTable("Idp_ClientIdPRestrictions");
+                b.ToTable("IdpConfig_ClientIdPRestrictions");
             });
             modelBuilder.Entity<ClientClaim>(b =>
             {
-                b.ToTable("Idp_ClientClaims");
+                b.ToTable("IdpConfig_ClientClaims");
             });
             modelBuilder.Entity<ClientSecret>(b =>
             {
-                b.ToTable("Idp_ClientSecrets");
+                b.ToTable("IdpConfig_ClientSecrets");
             });
             modelBuilder.Entity<ClientScope>(b =>
             {
-                b.ToTable("Idp_ClientScopes");
+                b.ToTable("IdpConfig_ClientScopes");
             });
             modelBuilder.Entity<ClientPostLogoutRedirectUri>(b =>
             {
-                b.ToTable("Idp_ClientPostLogoutRedirectUris");
+                b.ToTable("IdpConfig_ClientPostLogoutRedirectUris");
             });
             modelBuilder.Entity<ClientRedirectUri>(b =>
             {
-                b.ToTable("Idp_ClientRedirectUris");
+                b.ToTable("IdpConfig_ClientRedirectUris");
             });
             modelBuilder.Entity<ClientGrantType>(b =>
             {
-                b.ToTable("Idp_ClientGrantTypes");
+                b.ToTable("IdpConfig_ClientGrantTypes");
             });
             modelBuilder.Entity<ApiResourceProperty>(b =>
             {
-                b.ToTable("Idp_ApiResourceProperties");
+                b.ToTable("IdpConfig_ApiResourceProperties");
             });
             modelBuilder.Entity<ApiResourceClaim>(b =>
             {
-                b.ToTable("Idp_ApiResourceClaims");
+                b.ToTable("IdpConfig_ApiResourceClaims");
             });
             modelBuilder.Entity<ApiScope>(b =>
             {
-                b.ToTable("Idp_ApiScopes");
+                b.ToTable("IdpConfig_ApiScopes");
             });
             modelBuilder.Entity<ApiSecret>(b =>
             {
-                b.ToTable("Idp_ApiSecrets");
+                b.ToTable("IdpConfig_ApiSecrets");
             });
             modelBuilder.Entity<ApiResource>(b =>
             {
-                b.ToTable("Idp_ApiResources");
+                b.ToTable("IdpConfig_ApiResources");
             });
             modelBuilder.Entity<ApiScopeClaim>(b =>
             {
-                b.ToTable("Idp_ApiScopeClaims");
+                b.ToTable("IdpConfig_ApiScopeClaims");
             });
             modelBuilder.Entity<IdentityClaim>(b =>
             {
-                b.ToTable("Idp_IdentityClaims");
+                b.ToTable("IdpConfig_IdentityClaims");
             });
             modelBuilder.Entity<IdentityResource>(b =>
             {
-                b.ToTable("Idp_IdentityResources");
+                b.ToTable("IdpConfig_IdentityResources");
             });
             modelBuilder.Entity<IdentityResourceProperty>(b =>
             {
-                b.ToTable("Idp_IdentityResourceProperties");
+                b.ToTable("IdpConfig_IdentityResourceProperties");
             });
         }
     }
