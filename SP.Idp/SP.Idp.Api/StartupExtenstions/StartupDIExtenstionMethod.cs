@@ -2,7 +2,7 @@
 
 namespace SP.Idp.Api.StartupExtenstions
 {
-    public static class ConfigureDI
+    public static class StartupDIExtenstionMethod
     {
         public static void SP_DI(this IServiceCollection services)
         {

@@ -20,34 +20,28 @@ namespace SP.Idp.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // 链接字符串配置
+            var MachineName = System.Environment.MachineName;
+            var ConnectionsString = "";
+            if (MachineName == "CGYYPC") //如果时单位机器
+            {
+                ConnectionsString = Configuration.GetConnectionString("CgyyConnection");
+                //ConnectionsString = configuration["ConnectionStrings:CgyyConnection"];
+            }
+            else
+            {
+                ConnectionsString = Configuration.GetConnectionString("HomeConnection");
+                //ConnectionsString = configuration["ConnectionStrings:HomeConnection"];
+            }
 
-
-            #region 基础配置
-
-            //数据库链接字符串
-            string ConnectionsString = services.SP_ConfigureDBConnectionStr(Configuration);
-            //基础配置
+            // 基础配置
             services.SP_ConfigureBase(Configuration);
 
-            #endregion
-
-
-
-            #region 配置Asp.net Core Identity
-
+            // 配置Asp.net Core Identity
             services.SP_ConfigureAspNetCoreIdentity(ConnectionsString);
 
-            #endregion
-
-
-
-            #region 配置IdentityServer4
-
+            // 配置IdentityServer4
             services.SP_ConfigureIdentityServer4(Environment, ConnectionsString);
-
-            #endregion
-
-
 
             #region DI(依赖注入) 配置
 
